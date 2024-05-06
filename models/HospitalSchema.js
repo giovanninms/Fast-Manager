@@ -2,30 +2,30 @@ const mongoose = require("mongoose")
 const schema = mongoose.Schema
 
 const hospitalSchema = ({
-    razaoSocial:{
+    razaoSocial: {
         type: String,
         required: true
     },
-    nomeFantasia:{
-        type: String,
-        required: true
-    }, 
-    cnpj:{
-        type: String,
-        required: true
-    }, 
-    email:{
+    nomeFantasia: {
         type: String,
         required: true
     },
-    telone:{
+    cnpj: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    telone: {
         type: String
     },
-    celular:{
+    celular: {
         type: String,
         required: true
     },
-    endereco:[{
+    endereco: [{
         rua: String,
         bairro: String,
         cidade: String,

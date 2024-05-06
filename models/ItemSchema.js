@@ -1,18 +1,16 @@
 const mongoose = require("mongoose")
 const schema = mongoose.Schema
 
-
-
 const itemSchema = new schema({
-    codigo:{
+    codigo: {
         type: String,
         required: true
     },
-    descricao:{
+    descricao: {
         type: String,
         requred: true
-    }, 
-    quantidade:{
+    },
+    quantidade: {
         type: Number,
         required: true
     },
