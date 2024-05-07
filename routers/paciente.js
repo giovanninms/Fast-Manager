@@ -5,6 +5,7 @@ require("../models/PacienteSchema")
 const PacienteSchema = mongoose.model("pacientes")
 
 //CRUD dos pacientes
+    //Create
 const novoPaciente = ({
     nome: "Giovanni Nascimento",
     cpf: "130.069.739-33",
@@ -29,5 +30,39 @@ new PacienteSchema(novoPaciente).save().then(() => {
     req.flash("msg_erro", "Erro ao cadastrar paciente!")
     res.render("index")
 })
+
+    //Read
+        //Consulta de um paciente
+PacienteSchema.findOne({_id: ""}).then((paciente)=>{
+    console.log(`Consulta do paciente: ${paciente.nome}`)
+}).catch((error)=>{
+    console.log("Erro ao consultar um paciente! " + error)
+})
+        //Consulta de todos paciente
+PacienteSchema.find().lean().then((pacientes)=>{
+    pacientes.forEach(paciente => {
+        console.log(`Paciente: ${paciente.nome}`)
+    });
+}).catch((error)=>{
+    console.log("Erro ao consultar todos os usuarios!")
+})
+
+    //Update
+const updatePaciente = ({
+    nome: "Mayllon"
+})
+
+PacienteSchema.findOneAndUpdate({_id: ""}, updatePaciente).then(()=>{
+    console.log(`Paciente: ${updatePaciente.nome} atualizado com sucesso!`)
+}).catch((error)=>{
+    console.log("Erro atualizado paciente")
+})
+    //Delete
+PacienteSchema.findOneAndDelete({_id: ""}).then((paciente)=>{
+    console.log(`Paciente ${paciente.nome} deletado!`)
+}).catch((error)=>{
+    console.log("Erro ao deletar paciente!")
+})
+
 
 module.exports = router

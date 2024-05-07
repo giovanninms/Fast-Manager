@@ -5,6 +5,7 @@ require("../models/HospitalSchema")
 const HospitalSchema = mongoose.model("hospitais")
 
 //CRUD do hospital
+    //Create
 const novoHospital = ({
     razaoSocial: "UNIORT.E - ORTOPEDIA ESPECIALIZADA LTDA",
     nomeFantasia: "CENTRO DE ORTOPEDIA UNIORTE",
@@ -27,6 +28,36 @@ new HospitalSchema(novoHospital).save().then(() => {
     console.log("Erro ao cadastrar hospital: " + error)
     req.flash("msg_erro", "Erro ao cadastrar Hospital")
     res.render("index")
+})
+    //Read
+        //Consulta do hospital pelo nome fantasia
+HospitalSchema.findOne({nomeFantasia: ""}).then((hospital)=>{
+    console.log(`Hospital ${hospital.nomeFantasia}`)
+}).catch((error)=>{
+    console.log("Erro ao consultar o hospital pelo nome fantasia: " + error)
+})
+        //consulta de todos os hospitais
+HospitalSchema.find().lean().then((hospitais)=>{
+    hospitais.forEach(hospital => {
+        console.log(`Hospital: ${hospital.nomeFantasia}`)
+    });
+}).catch((error)=>{
+    console.log("Error ao consultar todos os hospitais: " + error)
+})
+    //Update
+const updateHospital =({
+    razaoSocial: "Teste"
+})
+HospitalSchema.findOne({_id: ""}, updateHospital).then((hospital)=>{
+    console.log(`razão Socail ${hospital.razaoSocial} alterado para ${updateHospital}`)
+}).catch((error)=>{
+    console.log("Erro ao editar hospital")
+})
+    //Delete
+HospitalSchema.findOneAndDelete({_id: ""}).then((hospital)=>{
+    console.log(`Hospital ${hospital.nomeFantasia} deletado`)
+}).catch((error)=>{
+    console.log("Erro ao deletar hospital")
 })
 
 module.exports = router

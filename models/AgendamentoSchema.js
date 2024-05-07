@@ -55,7 +55,6 @@ const tiposCirurgia = Object.freeze({
     Tenoplastia: "Tenoplastia"
 })
 
-
 const agendamentoSchema = new schema({
     paciente: {
         type: mongoose.Schema.Types.ObjectId,

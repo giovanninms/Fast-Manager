@@ -5,6 +5,7 @@ require("../models/AgendamentoSchema")
 const AgendamentoSchema = mongoose.model("agendamentos")
 
 //CRUD do Agendamento
+    //Create
 const novoAgendamento = ({
     paciente: '6634d89147281dbc185ea3e4',
     medico: '6634c927d0dc4db9d91a6bba',
@@ -24,6 +25,38 @@ AgendamentoSchema(novoAgendamento).save().then(() => {
     console.log("Erro ao cadastrar agendamento: " + error)
     req.flash("msg_erro", "Erro ao cadastrar agendamento!")
     res.render("index")
+})
+    //Read
+        //Consulta de todos os agendamentos
+AgendamentoSchema.find().lean().then((agendamentos)=>{
+    agendamentos.forEach(agendamento => {
+        console.log(`Agendamento: ${agendamento}`)
+    });
+}).catch((error)=>{
+    console.log("Erro ao consultar todas os agendamentos " + error)
+})
+
+        //Consulta de um agendamento pelo paciente
+AgendamentoSchema.findOne({paciente: ""}).then((agendamento)=>{
+    console.log(`Agendamento: ${agendamento.paciente}`)
+}).catch((error)=>{
+    console.log("Erro ao consultar agendamento pelo paciente " + error)
+})
+
+    //Update
+const updateAgendamento = ({
+    tipoCirurgia: "Manguito"
+})
+
+AgendamentoSchema.findOneAndUpdate({_id: ""}, updateAgendamento).then((agendamento)=>{
+    console.log(`Agendamento ${agendamento} alterado com sucesso`)
+})
+
+    //Delete
+AgendamentoSchema.findOneAndDelete({_id: ""}).then((agendamento)=>{
+    console.log(`Agendamento ${agendamento.paciente} excluido`)
+}).catch((error)=>{
+    console.log("Erro ao deletar o agendamento " + error)
 })
 
 module.exports = router
