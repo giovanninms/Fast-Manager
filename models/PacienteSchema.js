@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const schema = mongoose.Schema
 
-const pacienteSchema = ({
+const pacienteSchema = new schema({
     nome: {
         type: String,
         required: true

@@ -5,6 +5,12 @@ const bodyparser = require('body-parser')
 const handlebars = require("express-handlebars")
 const session = require('express-session')
 const flash = require('connect-flash')
+const agendamento = require("./routers/agendamento")
+const hospital = require("./routers/hospital")
+const item = require("./routers/item")
+const medico = require("./routers/medico")
+const paciente = require("./routers/paciente")
+const Usuario = require("./routers/usuario")
 
 app.use(session({
     secret: "secret",
@@ -32,10 +38,15 @@ mongoose.connect("mongodb://127.0.0.1/fast_manager").then(() => {
 })
 
 app.get("/", (req, res) => {
-
+    res.render("index")
 })
 
-
+//app.use("/agendamento", agendamento)
+// app.use("/hospital", hospital)
+// app.use("/item", item)
+// app.use("/medico", medico)
+// app.use("/paciente", paciente)
+// app.use("/usuario", Usuario)
 
 const porta = 3000
 app.listen(porta, (req, res) => {
