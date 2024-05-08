@@ -4,6 +4,17 @@ const mongoose = require("mongoose")
 require("../models/HospitalSchema")
 const HospitalSchema = mongoose.model("hospitais")
 
+router.get("/", (req, res) => {
+    HospitalSchema.find().lean().then((hospitais) => {
+        hospitais.forEach(hospital => {
+            console.log(`Hospital: ${hospital.nomeFantasia}`)
+            
+        });
+        res.render("hospital/index", {hospitais: hospitais})
+    }).catch((error) => {
+        console.log("Error ao consultar todos os hospitais: " + error)
+    })
+})
 // //CRUD do hospital
 //     //Create
 // const novoHospital = ({
@@ -37,14 +48,8 @@ const HospitalSchema = mongoose.model("hospitais")
 //     console.log("Erro ao consultar o hospital pelo nome fantasia: " + error)
 // })
 //         //consulta de todos os hospitais
-// HospitalSchema.find().lean().then((hospitais)=>{
-//     hospitais.forEach(hospital => {
-//         console.log(`Hospital: ${hospital.nomeFantasia}`)
-//     });
-// }).catch((error)=>{
-//     console.log("Error ao consultar todos os hospitais: " + error)
-// })
-    //Update
+//
+//Update
 // const updateHospital =({
 //     razaoSocial: "Teste"
 // })
@@ -53,11 +58,11 @@ const HospitalSchema = mongoose.model("hospitais")
 // }).catch((error)=>{
 //     console.log("Erro ao editar hospital")
 // })
-    //Delete
+//Delete
 // HospitalSchema.findOneAndDelete({_id: "6634e3f01861ef23a77dbcd8"}).then((hospital)=>{
 //     console.log(`Hospital ${hospital.nomeFantasia} deletado`)
 // }).catch((error)=>{
 //     console.log("Erro ao deletar hospital")
 // })
 
-// module.exports = router
+module.exports = router

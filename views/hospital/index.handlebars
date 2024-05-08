@@ -1,0 +1,22 @@
+<div class="table-container " >
+    <div class="table-responsive w-75 position-absolute top-50 end-0 me-4 translate-middle-y" style="height: 32rem; overflow-y: auto; margin-top: 3%;">
+        <table class="table table-hover table-bordered table-info table-sm" >
+            <thead class="table-light">
+                <tr class="sticky-top" >
+                    <th scope="col">Nome Fantasia</th>
+                    <th scope="col">CNPJ</th>
+                    <th scope="col">Telefone</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each hospitais}}
+                <tr>
+                    <td>{{nomeFantasia}}</td>
+                    <td>{{cnpj}}</td>
+                    <td>{{celular}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

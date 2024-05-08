@@ -41,8 +41,8 @@ app.get("/", (req, res) => {
     res.render("index")
 })
 
-//app.use("/agendamento", agendamento)
-// app.use("/hospital", hospital)
+app.use("/agendamento", agendamento)
+app.use("/hospital", hospital)
 // app.use("/item", item)
 // app.use("/medico", medico)
 // app.use("/paciente", paciente)

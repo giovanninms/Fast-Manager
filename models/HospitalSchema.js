@@ -18,7 +18,7 @@ const hospitalSchema = ({
         type: String,
         required: true
     },
-    telone: {
+    telefone: {
         type: String
     },
     celular: {
