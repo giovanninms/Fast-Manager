@@ -13,7 +13,6 @@
                         <h5 class="row mt-4 ms-1">Fitrar Por:</h5>
                         <select name="selectFiltro" id="" class="form-control">
                             <option value="todos">Todos Hospitais</option>
-                            <hr>
                             <option value="nomeFantasia">Nome Fantasia</option>
                             <option value="cnpj">CNPJ</option>
                         </select>
@@ -22,7 +21,7 @@
                     </form>
                 </div>
                 <div class="buttons mt-4">
-                    <a href="#" class="pt-4">Cadastrar Novo Hospital</a>
+                    <a href="#" class="mt-2">Cadastrar Novo Hospital</a>
                     <a href="#"></a>
                 </div>
 
@@ -40,16 +39,22 @@
                                 <th scope="col-md-auto">Email</th>
                             </tr>
                         </thead>
-                        {{#each hospitais}}
                         <tbody>
+                            {{#if hospital}}
                             <tr>
-                                <td onclick="detalheHospital()">{{nomeFantasia}}</td>
-                                <td onclick="detalheHospital()">{{cnpj}}</td>
-                                <td onclick="detalheHospital()">{{celular}}</td>
-                                <td onclick="detalheHospital()">{{email}}</td>
+                                <td onclick="detalheHospital()">{{hospital.nomeFantasia}}</td>
+                                <td onclick="detalheHospital()">{{hospital.cnpj}}</td>
+                                <td onclick="detalheHospital()">{{hospital.celular}}</td>
+                                <td onclick="detalheHospital()">{{hospital.email}}</td>
+                                </a>
                             </tr>
+                            {{else}}
+                            <tr>
+                                <td colspan="4">Nenhum hospital encontrado.</td>
+                            </tr>
+                            {{/if}}
                         </tbody>
-                        {{/each}}
+
                     </table>
                 </div>
             </div>

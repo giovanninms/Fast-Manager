@@ -5,16 +5,41 @@ require("../models/HospitalSchema")
 const HospitalSchema = mongoose.model("hospitais")
 
 router.get("/", (req, res) => {
-    HospitalSchema.find().lean().then((hospitais) => {
-        hospitais.forEach(hospital => {
-            console.log(`Hospital: ${hospital.nomeFantasia}`)
-            
-        });
-        res.render("hospital/index", {hospitais: hospitais})
-    }).catch((error) => {
-        console.log("Error ao consultar todos os hospitais: " + error)
-    })
+    res.render("hospital/index")
 })
+
+router.post("/filtro", (req, res) => {
+    const inputFiltro = req.body.inputFiltro
+    const selectFiltro = req.body.selectFiltro
+
+    if (selectFiltro === "nomeFantasia") {
+        HospitalSchema.findOne({nomeFantasia: inputFiltro}).lean().then((hospital) => {
+            console.log(`Hospital ${hospital.nomeFantasia},`)
+            res.render("hospital/filtro", {hospital: hospital})
+        }).catch((error) => {
+            console.log("Erro ao consultar o hospital pelo nome fantasia: " + error)
+        })
+    }else if(selectFiltro === "cnpj"){
+        HospitalSchema.findOne({cnpj: inputFiltro}).then((hospital) => {
+            console.log(`Hospital ${hospital.nomeFantasia},`)
+            res.render("hospital/filtro", {hospital: hospital})
+        }).catch((error) => {
+            console.log("Erro ao consultar o hospital pelo cnpj: " + error)
+        })
+    }else if(selectFiltro === "todos"){
+        HospitalSchema.find().lean().then((hospitais) => {
+            hospitais.forEach(hospital => {
+                console.log(`Hospital: ${hospital.nomeFantasia}`)
+    
+            });
+            res.render("hospital/index", { hospitais: hospitais })
+        }).catch((error) => {
+            console.log("Error ao consultar todos os hospitais: " + error)
+        })
+    }
+    
+})
+
 // //CRUD do hospital
 //     //Create
 // const novoHospital = ({
@@ -41,20 +66,15 @@ router.get("/", (req, res) => {
 //     //res.render("index")
 // })
 //     //Read
-//         //Consulta do hospital pelo nome fantasia
-// HospitalSchema.findOne({nomeFantasia: "CENTRO DE ORTOPEDIA UNIORTE"}).then((hospital)=>{
-//     console.log(`Hospital ${hospital.nomeFantasia}`)
-// }).catch((error)=>{
-//     console.log("Erro ao consultar o hospital pelo nome fantasia: " + error)
-// })
+//         
 //         //consulta de todos os hospitais
 //
 //Update
 // const updateHospital =({
-//     razaoSocial: "Teste"
+//     nomeFantasia: "Teste"
 // })
-// HospitalSchema.findOne({_id: "6634e3f01861ef23a77dbcd8"}, updateHospital).then((hospital)=>{
-//     console.log(`razão Socail ${hospital.razaoSocial} alterado para ${updateHospital.razaoSocial}`)
+// HospitalSchema.findOne({_id: "663bac4a2f182db2b3275f9a"}, updateHospital).then((hospital)=>{
+//     console.log(`razão Socail ${hospital.nomeFantasia} alterado para ${updateHospital.nomeFantasia}`)
 // }).catch((error)=>{
 //     console.log("Erro ao editar hospital")
 // })
