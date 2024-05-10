@@ -20,7 +20,7 @@ router.post("/filtro", (req, res) => {
             console.log("Erro ao consultar o hospital pelo nome fantasia: " + error)
         })
     }else if(selectFiltro === "cnpj"){
-        HospitalSchema.findOne({cnpj: inputFiltro}).then((hospital) => {
+        HospitalSchema.findOne({cnpj: inputFiltro}).lean().then((hospital) => {
             console.log(`Hospital ${hospital.nomeFantasia},`)
             res.render("hospital/filtro", {hospital: hospital})
         }).catch((error) => {

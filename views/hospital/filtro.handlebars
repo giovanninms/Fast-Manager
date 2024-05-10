@@ -1,6 +1,6 @@
 <script>
-    function detalheHospital() {
-        window.location.href = "#";
+    function detalheHospital(_id) {
+        window.location.href = "hospital/detalheHospital/:id" ;
     }
 </script>
 
@@ -42,7 +42,7 @@
                         <tbody>
                             {{#if hospital}}
                             <tr>
-                                <td onclick="detalheHospital()">{{hospital.nomeFantasia}}</td>
+                                <td onclick="detalheHospital({{hospital._id}})">{{hospital.nomeFantasia}}</td>
                                 <td onclick="detalheHospital()">{{hospital.cnpj}}</td>
                                 <td onclick="detalheHospital()">{{hospital.celular}}</td>
                                 <td onclick="detalheHospital()">{{hospital.email}}</td>
