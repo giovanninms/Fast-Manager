@@ -1,0 +1,61 @@
+{{#if hospital}}
+<div class="card">
+    <div class="card-body">
+        <div class="input-group mb-3 mt-4">
+            <span class="input-group-text">Razão Social</span>
+            <input name="razaoSocial" type="text" class="form-control" value="{{hospital.razaoSocial}}">
+        </div>
+        <div class="input-group mb-3 mt-4">
+            <span class="input-group-text">Nome Fantasia</span>
+            <input name="nomeFantasia" type="text" class="form-control" value="{{hospital.nomeFantasia}}">
+        </div>
+        <div class="mb-3 mt-4">
+            <div class="input-group">
+                <span class="input-group-text">CNPJ</span>
+                <input name="cnpj" type="text" class="form-control" value="{{hospital.cnpj}}">
+                <span class="input-group-text">Telefone</span>
+                <input name="telefone" type="text" class="form-control" value="{{hospital.telefone}}">
+            </div>
+        </div>
+        <div class="input-group mb-3 mt-4">
+            <span class="input-group-text">E-mail</span>
+            <input name="email" type="text" class="form-control" value="{{hospital.email}}">
+            <span class="input-group-text">Celular</span>
+            <input name="celular" type="text" class="form-control" value="{{hospital.celular}}">
+        </div>
+        <br>
+        <div class="mb-3 mt-2">
+            <label for="basic-url" class="form-label">Endereço:</label>
+            <div class="input-group">
+                <span class="input-group-text">Rua</span>
+                <input name="rua" type="text" class="form-control" value="{{endereco.rua}}">
+                <span class="input-group-text">Bairro</span>
+                <input name="bairro" type="text" class="form-control" value="{{endereco.bairro}}">
+            </div>
+        </div>
+        <div class="input-group mt-4">
+            <span class="input-group-text">Cidade</span>
+            <input name="cidade" type="text" class="form-control" value="{{endereco.cidade}}">
+            <span class="input-group-text">Estado</span>
+            <select name="estado" class="form-select"> 
+                <option value="{{endereco.estado}}">{{endereco.estado}}</option>
+                <hr>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+            <span class="input-group-text">CEP</span>
+            <input name="cep" type="text" class="form-control" value="{{endereco.cep}}">
+        </div>
+        <button type="submit" class="btn btn-success mt-4 mb-4">Salvar</button>
+        <a href="/hospital/detalheHospital/{{hospital._id}}"><button type="button" class="btn btn-danger mt-4 mb-4">Cancelar</button></a>
+    </div>
+</div>
+{{/if}}
+
+<script>
+
+    var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
+        keyboard: false
+    });
+    myModal.show(); 
+</script>

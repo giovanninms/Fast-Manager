@@ -1,8 +1,3 @@
-<script>
-    function detalheHospital(_id) {
-        window.location.href = "hospital/detalheHospital/:id" ;
-    }
-</script>
 
 <div class=" h-100 ps-2 ">
     <div class="row w-100 mt-3 ps-2">
@@ -21,7 +16,7 @@
                     </form>
                 </div>
                 <div class="buttons mt-4">
-                    <a href="#" class="mt-2">Cadastrar Novo Hospital</a>
+                    <a href="/hospital/novoHospital" class="mt-2 "><button type="menu" class="btn btn-outline-success">Cadastrar Hospital</button></a>
                     <a href="#"></a>
                 </div>
 
@@ -42,11 +37,11 @@
                         <tbody>
                             {{#if hospital}}
                             <tr>
-                                <td onclick="detalheHospital({{hospital._id}})">{{hospital.nomeFantasia}}</td>
-                                <td onclick="detalheHospital()">{{hospital.cnpj}}</td>
-                                <td onclick="detalheHospital()">{{hospital.celular}}</td>
-                                <td onclick="detalheHospital()">{{hospital.email}}</td>
-                                </a>
+                                <td><a href="/hospital/detalheHospital/{{hospital._id}}">{{hospital.nomeFantasia}}</a></td>
+                                <td><a href="/hospital/detalheHospital/{{hospital._id}}">{{hospital.cnpj}}</a></td>
+                                <td><a href="/hospital/detalheHospital/{{hospital._id}}">{{hospital.celular}}</a></td>
+                                <td><a href="/hospital/detalheHospital/{{hospital._id}}">{{hospital.email}}</a></td>
+                                
                             </tr>
                             {{else}}
                             <tr>
