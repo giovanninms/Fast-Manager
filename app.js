@@ -43,7 +43,7 @@ app.get("/", (req, res) => {
 
 app.use("/agendamento", agendamento)
 app.use("/hospital", hospital)
-// app.use("/item", item)
+app.use("/item", item)
 // app.use("/medico", medico)
 // app.use("/paciente", paciente)
 // app.use("/usuario", Usuario)

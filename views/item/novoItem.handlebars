@@ -1,0 +1,103 @@
+  {{#if erros}}
+  <!-- Modal -->
+  <div class="modal fade show" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Erro!</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          {{#each erros}}
+          <p class="alert alert-danger flex-row">{{menssagem}}</p>
+          {{/each}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/if}}
+
+  <div class="container text-center d-flex justify-content-center  h-75">
+    <div class="card align-self-center w-75">
+      <div class="card-body">
+        <form action="/item/novoItem/add" method="post">
+
+          <div class="mb-3 mt-4">
+            <div class="input-group">
+              <span class="input-group-text">Código</span>
+              <input name="codigo" type="text" class="form-control w-25" required>
+              <span class="input-group-text">Descrição</span>
+              <input name="descricao" type="text" class="form-control w-50" required>
+            </div>
+          </div>
+          <div class="input-group mb-3 mt-4">
+            <span class="input-group-text">Quantidade</span>
+            <input name="quantidade" type="number" class="form-control " required>
+            <span class="input-group-text">Tipo de Cirurgia</span>
+            <select name="tipoCirurgia" id="" class="form-control w-50">
+              {{!-- {{#each itens}}
+              <option value="" >{{tipoCirurgia}}</option>
+              {{/each}} --}}
+              <option value="Acromio">Acromio</option>
+              <option value="Acromio Bio">Acromio Bio</option>
+              <option value="Artroscopia de Cotovelo">Artroscopia de Cotovelo</option>
+              <option value="Artroscopia de Quadril">Artroscopia de Quadril</option>
+              <option value="Artroscopia de Tornozelo">Artroscopia de Tornozelo</option>
+              <option value="Biceps">Biceps</option>
+              <option value="Biceps Bio">Biceps Bio</option>
+              <option value="FX Clavicula">Fx Clavicula</option>
+              <option value="Fx Falange">Fx Falange</option>
+              <option value="Fx FemurDistal">Fx Femur Distal</option>
+              <option value="Fx FemurProximal">Fx Femur Proximal</option>
+              <option value="Hallux Valgus">Hallux Valgus</option>
+              <option value="Instabilidade">Instabilidade</option>
+              <option value="Instabilidade Bio">Instabilidade Bio</option>
+              <option value="Labral">Labral</option>
+              <option value="Labral Bio">Labral Bio</option>
+              <option value="LAC">LAC</option>
+              <option value="LAL">LAL</option>
+              <option value="LAL Bio">LAL Bio</option>
+              <option value="LCA">LCA</option>
+              <option value="LCA Bio">LCA Bio</option>
+              <option value="LCM">LCM</option>
+              <option value="LCM Bio">LCM Bio</option>
+              <option value="LCP">LCP</option>
+              <option value="LCP Bio">LCP Bio</option>
+              <option value="Ligamento Tornozelo">Ligamento Tornozelo</option>
+              <option value="LPFM">LPFM</option>
+              <option value="LPFM Bio">LPFM Bio</option>
+              <option value="Manguito">Manguito</option>
+              <option value="Manguito Bio">Manguito Bio</option>
+              <option value="Menisco">Menisco</option>
+              <option value="Osteotomia">Osteotomia</option>
+              <option value="Oxford">Oxford</option>
+              <option value="Pe Plano">Pe Plano</option>
+              <option value="PTJ">PTJ</option>
+              <option value="PTO Reversa">PTO Reversa</option>
+              <option value="PTO Anatomica">PTO Anatomica</option>
+              <option value="PTQ Dupla Mobilidade">PTQ Dupla Mobilidade</option>
+              <option value="PTQ Hibrida">PTQ Hibrida</option>
+              <option value="PTQ Presfit">PTQ Presfit</option>
+              <option value="PTQ Revisao">PTQ Revisao</option>
+              <option value="Retirada">Retirada</option>
+              <option value="Tendao de Aquiles">Tendao de Aquiles</option>
+              <option value="Tenoplastia">Tenoplastia</option>
+            </select>          
+          </div>
+          <br>
+          <button type="submit" class="btn btn-success mt-4 mb-4">Cadastrar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
+      keyboard: false
+    });
+    myModal.show(); 
+  </script>

@@ -28,20 +28,19 @@
                     <table class="table table-hover table-bordered table-info table-sm">
                         <thead class="table-light">
                             <tr class="sticky-top">
-                                <th>Nome Fantasia</th>
-                                <th scope="col-md-auto">CNPJ</th>
-                                <th scope="col-md-auto">Telefone</th>
-                                <th scope="col-md-auto">Email</th>
+                                <th class="col-5">Nome Fantasia</th>
+                                <th class="col-2">CNPJ</th>
+                                <th class="col-2">Telefone</th>
+                                <th class="col-2">Email</th>
                             </tr>
                         </thead>
                         <tbody>
                             {{#if hospital}}
                             <tr>
-                                <td><a href="/hospital/detalheHospital/{{hospital._id}}">{{hospital.nomeFantasia}}</a></td>
-                                <td><a href="/hospital/detalheHospital/{{hospital._id}}">{{hospital.cnpj}}</a></td>
-                                <td><a href="/hospital/detalheHospital/{{hospital._id}}">{{hospital.celular}}</a></td>
-                                <td><a href="/hospital/detalheHospital/{{hospital._id}}">{{hospital.email}}</a></td>
-                                
+                                <td><a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="/hospital/detalheHospital/{{hospital._id}}">{{hospital.nomeFantasia}}</a></td>
+                                <td><a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="/hospital/detalheHospital/{{hospital._id}}">{{hospital.cnpj}}</a></td>
+                                <td><a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="/hospital/detalheHospital/{{hospital._id}}">{{hospital.celular}}</a></td>
+                                <td><a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="/hospital/detalheHospital/{{hospital._id}}">{{hospital.email}}</a></td>
                             </tr>
                             {{else}}
                             <tr>

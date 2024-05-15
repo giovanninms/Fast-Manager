@@ -1,6 +1,30 @@
+{{#if erros}}
+<!-- Modal -->
+<div class="modal fade show" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Erro!</h5>
+        <a class="btn-close" href="/hospital/editarHospital/{{id}}"></a>
+      </div>
+      <div class="modal-body">
+        {{#each erros}}
+          <p class="alert alert-danger flex-row">{{menssagem}}</p>
+        {{/each}}
+      </div>
+      <div class="modal-footer">
+         <a href="/hospital/editarHospital/{{id}}"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button></a>
+      </div>
+    </div>
+  </div>
+</div>
+{{/if}}
+
 {{#if hospital}}
 <div class="card">
     <div class="card-body">
+        <form action="/hospital/editHospital" method="post">
+        <input type="hidden" name="id" value="{{hospital._id}}">
         <div class="input-group mb-3 mt-4">
             <span class="input-group-text">Razão Social</span>
             <input name="razaoSocial" type="text" class="form-control" value="{{hospital.razaoSocial}}">
@@ -48,6 +72,7 @@
         </div>
         <button type="submit" class="btn btn-success mt-4 mb-4">Salvar</button>
         <a href="/hospital/detalheHospital/{{hospital._id}}"><button type="button" class="btn btn-danger mt-4 mb-4">Cancelar</button></a>
+        </form>
     </div>
 </div>
 {{/if}}
