@@ -19,7 +19,11 @@
     </div>
   </div>
   {{/if}}
-
+  <a href="/item/" class="position-absolute top-10 start-0 ms-2 mt-2" title="Voltar">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+    </svg>
+  </a>
   <div class="container text-center d-flex justify-content-center  h-75">
     <div class="card align-self-center w-75">
       <div class="card-body">
@@ -41,6 +45,7 @@
               {{!-- {{#each itens}}
               <option value="" >{{tipoCirurgia}}</option>
               {{/each}} --}}
+              <option value="" hidden ></option>
               <option value="Acromio">Acromio</option>
               <option value="Acromio Bio">Acromio Bio</option>
               <option value="Artroscopia de Cotovelo">Artroscopia de Cotovelo</option>
@@ -85,10 +90,9 @@
               <option value="Retirada">Retirada</option>
               <option value="Tendao de Aquiles">Tendao de Aquiles</option>
               <option value="Tenoplastia">Tenoplastia</option>
-            </select>          
-          </div>
-          <br>
-          <button type="submit" class="btn btn-success mt-4 mb-4">Cadastrar</button>
+            </select>      
+            </div>    
+          <button type="submit" class="btn btn-success ">Cadastrar</button>
         </form>
       </div>
     </div>

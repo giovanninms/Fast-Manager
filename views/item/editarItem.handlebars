@@ -19,13 +19,13 @@
     </div>
   </div>
   {{/if}}
-
+  
 {{#if item}}
   <div class="container text-center d-flex justify-content-center  h-75">
     <div class="card align-self-center w-75">
       <div class="card-body">
-        <form action="/item/novoItem/add" method="post">
-
+        <form action="/item/editItem" method="post">
+          <input type="hidden" name="id" value="{{item._id}}">
           <div class="mb-3 mt-4">
             <div class="input-group">
               <span class="input-group-text">Código</span>
@@ -89,8 +89,8 @@
               <option value="Tenoplastia">Tenoplastia</option>
             </select>          
           </div>
-          <br>
-          <button type="submit" class="btn btn-success mt-4 mb-4">Salvar</button>
+          <button type="submit" class="btn btn-success ">Salvar</button>
+          <a href="/item/detalheItem/{{item._id}}" class="btn btn-danger">Cancelar</a>
         </form>
       </div>
     </div>

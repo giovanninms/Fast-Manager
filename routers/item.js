@@ -102,16 +102,45 @@ router.get("/editarItem/:id", (req, res) => {
         console.log("Erro ao consultar o item pelo _id: " + error)
     })
 })
+router.post("/editItem", (req, res)=>{
+    
+        const {codigo, descricao, tipoCirurgia, quantidade, id} = req.body
+    
+        const erros = []
+        if (!codigo || typeof codigo === undefined || codigo === null) {
+            erros.push({ menssagem: "código inválida! Tente novamente." })
+        }
+        if (!descricao || typeof descricao === undefined || descricao === null) {
+            erros.push({ menssagem: "Descrição inválido! Tente novamente." })
+        }
+        if (!tipoCirurgia || typeof tipoCirurgia === undefined || tipoCirurgia === null) {
+            erros.push({ menssagem: "Tipo de Cirurgia inválido! Tente novamente." })
+        }
+        if (!quantidade || typeof quantidade === undefined || quantidade === null) {
+            erros.push({ menssagem: "Quantidade inválido! Tente novamente." })
+        }
+    
+        if (erros.length > 0) {
+            res.render("item/novoItem", { erros: erros })
+        } else {
+            const updateItem = ({
+                codigo: codigo,
+                descricao: descricao,
+                tipoCirurgia: tipoCirurgia,
+                quantidade: quantidade,
+            })
+            ItemSchema.findOneAndUpdate({_id: id}, updateItem).then(() => {
+                console.log("Item alterado com sucesso!")
+                req.flash("msg_sucesso", "Item alterado com sucesso!")
+                res.redirect("/item/detalheItem/"+ id)
+            }).catch((error) => {
+                console.log("Erro ao alterar Item: " + error)
+                req.flash("msg_erro", "Erro ao alterar Item")
+                res.redirect("/item/detalheItem/"+id)
+            })
+        }
+    })
 //CRUD dos Itens
-    //Update
-// const updateItem = ({
-//     codigo: "123456"
-// })
-// ItemSchema.findOneAndUpdate({_id: "663a38190549b68efad88090"}, updateItem).then((item)=>{
-//     console.log(`codigo ${item.codigo} alterado para ${updateItem.codigo}`)
-// }).catch((error)=>{
-//     console.log("Erro ao fazer update no item: " + error)
-// })
     //Delete
 // ItemSchema.findOneAndDelete({_id: "663a38190549b68efad88090"}).then((item)=>{
 //     console.log(`Item ${item.codigo} deletado`)
