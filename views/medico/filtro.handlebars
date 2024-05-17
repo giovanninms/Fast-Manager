@@ -9,11 +9,11 @@
                         <select name="selectFiltro" id="" class="form-control">
                             <option value="todos">Todos Itens</option>
                             <hr>
-                            <option value="nome" >Nome</option>
+                            <option value="nome">Nome</option>
                             <option value="especializacao">especialização</option>
-                            <option value="crm">CRM</option>
+                            <option value="email">CRM</option>
                         </select>
-                        <input type="text" name="inputFiltro" id="" class=" mt-2 form-control text-uppercase">
+                        <input type="text" name="inputFiltro" id="" class=" mt-2 form-control">
                         <button type="submit" class="btn btn-secondary mt-2">Filtrar</button>
                     </form>
                 </div>
@@ -35,20 +35,20 @@
                                 <th class="col-1">CRM</th>
                             </tr>
                         </thead>    
-                        {{#each medicos}}
+                        {{#if medico}}
                         <tbody>
                             <tr>
                                 <td><a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                                        href="/medico/detalhemedico/{{_id}}">{{nome}}</a></td>
+                                        href="/medico/detalhemedico/{{_id}}">{{medico.nome}}</a></td>
                                 <td><a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                                        href="/medico/detalhemedico/{{_id}}">{{especializacao}}</a></td>
+                                        href="/medico/detalhemedico/{{_id}}">{{medico.especializacao}}</a></td>
                                 <td><a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                                        href="/medico/detalhemedico/{{_id}}">{{email}}</a></td>
+                                        href="/medico/detalhemedico/{{_id}}">{{medico.email}}</a></td>
                                 <td><a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                                        href="/medico/detalhemedico/{{_id}}">{{crm}}</a></td>
+                                        href="/medico/detalhemedico/{{_id}}">{{medico.crm}}</a></td>
                             </tr>
                         </tbody>
-                        {{/each}}
+                        {{/if}}
                     </table>
                 </div>
             </div>

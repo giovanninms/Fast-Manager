@@ -46,7 +46,6 @@ router.get("/novoHospital", (req, res) => {
 
 router.post("/novoHospital/add", (req, res) => {
     const { razaoSocial, nomeFantasia, cnpj, email, telefone, celular, rua, bairro, cidade, cep } = req.body
-
     const erros = []
     if (!razaoSocial || typeof razaoSocial === undefined || razaoSocial === null) {
         erros.push({ menssagem: "Razão Social inválida! Tente novamente." })
@@ -80,17 +79,17 @@ router.post("/novoHospital/add", (req, res) => {
         res.render("hospital/novoHospital", { erros: erros })
     } else {
         const novoHospital = ({
-            razaoSocial: razaoSocial,
-            nomeFantasia: nomeFantasia,
-            cnpj: cnpj,
-            email: email,
-            telefone: telefone,
-            celular: celular,
+            razaoSocial: razaoSocial.toUpperCase(),
+            nomeFantasia: nomeFantasia.toUpperCase(),
+            cnpj: cnpj.toUpperCase(),
+            email: email.toUpperCase(),
+            telefone: telefone.toUpperCase(),
+            celular: celular.toUpperCase(),
             endereco: [{
-                rua: rua,
-                bairro: bairro,
-                cidade: cidade,
-                cep: cep
+                rua: rua.toUpperCase(),
+                bairro: bairro.toUpperCase(),
+                cidade: cidade.toUpperCase(),
+                cep: cep.toUpperCase()
             }]
         })
         new HospitalSchema(novoHospital).save().then(() => {
@@ -161,17 +160,17 @@ router.post("/editHospital", (req, res) => {
         res.render("hospital/editarHospital", { erros: erros, id: id })
     } else {
         const updateHospital = ({
-            razaoSocial: razaoSocial,
-            nomeFantasia: nomeFantasia,
-            cnpj: cnpj,
-            email: email,
-            telefone: telefone,
-            celular: celular,
+            razaoSocial: razaoSocial.toUpperCase(),
+            nomeFantasia: nomeFantasia.toUpperCase(),
+            cnpj: cnpj.toUpperCase(),
+            email: email.toUpperCase(),
+            telefone: telefone.toUpperCase(),
+            celular: celular.toUpperCase(),
             endereco: [{
-                rua: rua,
-                bairro: bairro,
-                cidade: cidade,
-                cep: cep
+                rua: rua.toUpperCase(),
+                bairro: bairro.toUpperCase(),
+                cidade: cidade.toUpperCase(),
+                cep: cep.toUpperCase()
             }]
         })
         HospitalSchema.findOneAndUpdate({ _id: id }, updateHospital).then((hospital) => {

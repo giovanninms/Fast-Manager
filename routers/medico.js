@@ -19,17 +19,17 @@ router.post("/filtro", (req, res) => {
         }).catch((error) => {
             console.log("Erro ao consultar o medico pelo nome: " + error)
         })
-    } else if (selectFiltro === "expecializacao") {
-        MedicoSchema.findOne({ descricao: inputFiltro }).lean().then((medico) => {
-            console.log(`medico ${medico.descricao},`)
+    } else if (selectFiltro === "especializacao") {
+        MedicoSchema.findOne({ especializacao: inputFiltro }).lean().then((medico) => {
+            console.log(`medico ${medico.nome},`)
             res.render("medico/filtro", { medico: medico })
         }).catch((error) => {
             console.log("Erro ao consultar o medico pela expecialização: " + error)
         })
     } else if (selectFiltro === "crm"){
-        MedicoSchema.find({ tipoCirurgia: inputFiltro }).lean().then((itens) => {
-            console.log(`medico ${itens.descricao},`)
-            res.render("medico/index", { itens: itens })
+        MedicoSchema.findOne({ crm: inputFiltro }).lean().then((medico) => {
+            console.log(`medico ${medico.nome},`)
+            res.render("medico/filtro", { medico: medico })
         }).catch((error) => {
             console.log("Erro ao consultar o medico pelo CRM: " + error)
         })
@@ -50,7 +50,8 @@ router.get("/novomedico", (req, res) => {
 })
 
 router.post("/novomedico/add", (req, res) => {
-    const {codigo, descricao, tipoCirurgia, quantidade} = req.body
+    const {codigo, descricao, tipoCirurgia, quantidade} = req.body.toUpperCase()
+
 
     const erros = []
     if (!codigo || typeof codigo === undefined || codigo === null) {
@@ -70,10 +71,10 @@ router.post("/novomedico/add", (req, res) => {
         res.render("medico/novomedico", { erros: erros })
     } else {
         const novomedico = ({
-            codigo: codigo,
-            descricao: descricao,
-            tipoCirurgia: tipoCirurgia,
-            quantidade: quantidade,
+            codigo: codigo.toUpperCase(),
+            descricao: descricao.toUpperCase(),
+            tipoCirurgia: tipoCirurgia.toUpperCase(),
+            quantidade: quantidade.toUpperCase(),
         })
         new MedicoSchema(novomedico).save().then(() => {
             console.log("medico cadastrado com sucesso!")
@@ -124,10 +125,10 @@ router.post("/editmedico", (req, res)=>{
             res.render("medico/novomedico", { erros: erros })
         } else {
             const updatemedico = ({
-                codigo: codigo,
-                descricao: descricao,
-                tipoCirurgia: tipoCirurgia,
-                quantidade: quantidade,
+                codigo: codigo.toUpperCase(),
+                descricao: descricao.toUpperCase(),
+                tipoCirurgia: tipoCirurgia.toUpperCase(),
+                quantidade: quantidade.toUpperCase(),
             })
             MedicoSchema.findOneAndUpdate({_id: id}, updatemedico).then(() => {
                 console.log("medico alterado com sucesso!")

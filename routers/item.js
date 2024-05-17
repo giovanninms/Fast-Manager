@@ -70,10 +70,10 @@ router.post("/novoItem/add", (req, res) => {
         res.render("item/novoItem", { erros: erros })
     } else {
         const novoItem = ({
-            codigo: codigo,
-            descricao: descricao,
-            tipoCirurgia: tipoCirurgia,
-            quantidade: quantidade,
+            codigo: codigo.toUpperCase(),
+            descricao: descricao.toUpperCase(),
+            tipoCirurgia: tipoCirurgia.toUpperCase(),
+            quantidade: quantidade.toUpperCase(),
         })
         new ItemSchema(novoItem).save().then(() => {
             console.log("Item cadastrado com sucesso!")
@@ -124,10 +124,10 @@ router.post("/editItem", (req, res)=>{
             res.render("item/novoItem", { erros: erros })
         } else {
             const updateItem = ({
-                codigo: codigo,
-                descricao: descricao,
-                tipoCirurgia: tipoCirurgia,
-                quantidade: quantidade,
+                codigo: codigo.toUpperCase(),
+                descricao: descricao.toUpperCase(),
+                tipoCirurgia: tipoCirurgia.toUpperCase(),
+                quantidade: quantidade.toUpperCase(),
             })
             ItemSchema.findOneAndUpdate({_id: id}, updateItem).then(() => {
                 console.log("Item alterado com sucesso!")
