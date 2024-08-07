@@ -14,6 +14,7 @@ const Usuario = require("./routers/usuario")
 
 app.use(session({
     secret: "secret",
+    resave: false,
     saveUninitialized: true
 }))
 app.use(flash())
