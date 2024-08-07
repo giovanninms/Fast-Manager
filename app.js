@@ -45,8 +45,8 @@ app.use("/agendamento", agendamento)
 app.use("/hospital", hospital)
 app.use("/item", item)
 app.use("/medico", medico)
-// app.use("/paciente", paciente)
-// app.use("/usuario", Usuario)
+app.use("/paciente", paciente)
+app.use("/usuario", Usuario)
 
 const porta = 3000
 app.listen(porta, (req, res) => {
