@@ -1,0 +1,44 @@
+
+<a href="/medico/" class="position-absolute top-10 start-0 ms-2 mt-2" title="Voltar">
+  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-arrow-left"
+    viewBox="0 0 16 16">
+    <path fill-rule="evenodd"
+      d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+  </svg>
+</a>
+
+<div class="container text-center  d-flex align-items-center h-100">
+  <div class="card align-self-center w-100">
+    <div class="card-body">
+      {{#if medico}}
+      <div class="input-group mb-3 mt-4">
+        <span class="input-group-text">Nome</span>
+        <input name="nome" type="text" class="form-control text-uppercase w-25" value="{{medico.nome}}" disabled>
+        <span class="input-group-text">Especialização</span>
+        <select name="especializacao" id="" class="form-control w-auto" disabled>
+            <option value="" >{{medico.especializacao}}</option>
+           
+        </select>
+      </div>
+      <div class="input-group mb-3 mt-4">
+        <span class="input-group-text">CPF</span>
+        <input name="cpf" type="text" class="form-control text-uppercase" value="{{medico.cpf}}" disabled>
+        <span class="input-group-text">CRM</span>
+        <input name="crm" type="text" class="form-control text-uppercase" value="{{medico.crm}}" disabled>
+        <span class="input-group-text">Celular</span>
+          <input name="celular" type="text" class="form-control text-uppercase" value="{{medico.celular}}" disabled>
+      </div>
+      <br>
+      <div class="input-group mb-3 mt-4">
+        <div class="input-group">
+          <span class="input-group-text">E-mail</span>
+        <input name="email" type="text" class="form-control text-uppercase w-25" value="{{medico.email}}" disabled>
+          <span class="input-group-text">Telefone</span>
+          <input name="telefone" type="text" class="form-control text-uppercase" value="{{medico.telefone}}" disabled>
+        </div>
+      </div>
+      <a  href="/medico/editarMedico/{{medico._id}}" class="btn btn-success">Editar</a>
+      {{/if}}
+    </div>
+  </div>
+</div>

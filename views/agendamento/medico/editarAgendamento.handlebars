@@ -1,0 +1,49 @@
+<div class="container text-center  d-flex align-items-center h-100">
+  <div class="card align-self-center w-100">
+        <div class="card-body">
+            {{#if medico}}
+            <form action="/medico/editmedico" method="post">
+            <div class="input-group mb-3 mt-4">
+                <input type="hidden" name="id" value="{{medico._id}}">
+                <span class="input-group-text">Nome</span>
+                <input name="nome" type="text" class="form-control text-uppercase w-25" value="{{medico.nome}}"
+                    required>
+                <span class="input-group-text">Especialização</span>
+                <select name="especializacao" id="" class="form-control w-auto" required>
+                    <option value="{{medico.especializacao}}">{{medico.especializacao}}</option>
+                    <hr>
+                    <option value="" hidden></option>
+                    <option value="JOELHO">JOELHO</option>
+                    <option value="QUADRIL">QUADRIL</option>
+                    <option value="OMBRO">OMBRO</option>
+                    <option value="TORNOZELO">TORNOZELO</option>
+                    <option value="TRAUMA">TRAUMA</option>
+                </select>
+            </div>
+            <div class="input-group mb-3 mt-4">
+                <span class="input-group-text">CPF</span>
+                <input name="cpf" type="text" class="form-control text-uppercase" value="{{medico.cpf}}" required>
+                <span class="input-group-text">CRM</span>
+                <input name="crm" type="text" class="form-control text-uppercase" value="{{medico.crm}}" required>
+                <span class="input-group-text">Celular</span>
+                <input name="celular" type="text" class="form-control text-uppercase" value="{{medico.celular}}"
+                    required>
+            </div>
+            <br>
+            <div class="input-group mb-3 mt-4">
+                <div class="input-group">
+                    <span class="input-group-text">E-mail</span>
+                    <input name="email" type="text" class="form-control text-uppercase w-25" value="{{medico.email}}"
+                        required>
+                    <span class="input-group-text">Telefone</span>
+                    <input name="telefone" type="text" class="form-control text-uppercase" value="{{medico.telefone}}"
+                        required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success">Salvar</button>
+            <a href="/medico/detalheMedico/{{medico._id}}" class="btn btn-danger">Voltar</a>
+            </form>
+            {{/if}}
+        </div>
+    </div>
+</div>

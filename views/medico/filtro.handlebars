@@ -7,10 +7,10 @@
                     <form action="/medico/filtro" method="post">
                         <h5 class="row mt-4 ms-1">Fitrar Por:</h5>
                         <select name="selectFiltro" id="" class="form-control">
-                            <option value="todos">Todos Itens</option>
+                            <option value="todos">Todos Médicos</option>
                             <hr>
                             <option value="nome">Nome</option>
-                            <option value="especializacao">especialização</option>
+                            <option value="especializacao">Especialização</option>
                             <option value="email">CRM</option>
                         </select>
                         <input type="text" name="inputFiltro" id="" class=" mt-2 form-control">
@@ -19,7 +19,7 @@
                 </div>
                 <div class="buttons mt-4">
                     <a href="/medico/novoMedico" class="pt-4"><button type="menu" class="btn btn-outline-success">Cadastrar
-                            medico</button></a>
+                            Médico</button></a>
                 </div>
             </div>
         </div>
@@ -29,10 +29,10 @@
                     <table class="table table-hover table-bordered table-info table-sm">
                         <thead class="table-light">
                             <tr class="sticky-top">
-                                <th class="col-2">Nome</th>
-                                <th class="col-5">especialização</th>
-                                <th class="col-2">E-mail</th>
-                                <th class="col-1">CRM</th>
+                                <th class="col-md-auto">Nome</th>
+                                <th class="col-md-auto">especialização</th>
+                                <th class="col-md-auto">E-mail</th>
+                                <th class="col-md-auto">CRM</th>
                             </tr>
                         </thead>    
                         {{#if medico}}
@@ -48,6 +48,10 @@
                                         href="/medico/detalhemedico/{{_id}}">{{medico.crm}}</a></td>
                             </tr>
                         </tbody>
+                        {{else}}
+                        <tr>
+                            <td colspan="4">Médicos não encontrados</td>
+                        </tr>
                         {{/if}}
                     </table>
                 </div>

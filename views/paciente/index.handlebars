@@ -1,24 +1,25 @@
+
 <div class=" h-75 ps-2 ">
     <div class="row w-100 mt-3 ps-2">
         <div class="col card">
             <div class="card-body">
                 <div class="form">
-                    <form action="/medico/filtro" method="post">
+                    <form action="/paciente/filtro" method="post">
                         <h5 class="row mt-4 ms-1">Fitrar Por:</h5>
                         <select name="selectFiltro" id="" class="form-control">
-                            <option value="todos">Todos medicos</option>
+                            <option value="todos">Todos Pacientes</option>
                             <hr>
                             <option value="nome" >Nome</option>
-                            <option value="especializacao">especialização</option>
-                            <option value="crm">CRM</option>
+                            <option value="cpf">CPF</option>
+                            <option value="rg">RG</option>
                         </select>
                         <input type="text" name="inputFiltro" id="" class=" mt-2 form-control text-uppercase">
                         <button type="submit" class="btn btn-secondary mt-2">Filtrar</button>
                     </form>
                 </div>
                 <div class="buttons mt-4">
-                    <a href="/medico/novoMedico" class="pt-4"><button type="menu" class="btn btn-outline-success">Cadastrar
-                            Médico</button></a>
+                    <a href="/paciente/novoPaciente" class="pt-4"><button type="menu" class="btn btn-outline-success">Cadastrar
+                            Paciente</button></a>
                 </div>
             </div>
         </div>
@@ -29,27 +30,27 @@
                         <thead class="table-light">
                             <tr class="sticky">
                                 <th class="col-md-auto">Nome</th>
-                                <th class="col-md-auto">Especialização</th>
                                 <th class="col-md-auto">E-mail</th>
-                                <th class="col-md-auto">CRM</th>
+                                <th class="col-md-auto">CPF</th>
+                                <th class="col-md-auto">RG</th>
                             </tr>
                         </thead>    
-                        {{#each medicos}}
+                        {{#each pacientes}}
                         <tbody>
                             <tr>
                                 <td><a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                                        href="/medico/detalheMedico/{{_id}}">{{nome}}</a></td>
+                                        href="/paciente/detalhepaciente/{{_id}}">{{nome}}</a></td>
                                 <td><a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                                        href="/medico/detalheMedico/{{_id}}">{{especializacao}}</a></td>
+                                        href="/paciente/detalhepaciente/{{_id}}">{{email}}</a></td>
                                 <td><a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                                        href="/medico/detalheMedico/{{_id}}">{{email}}</a></td>
+                                        href="/paciente/detalhepaciente/{{_id}}">{{cpf}}</a></td>
                                 <td><a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                                        href="/medico/detalheMedico/{{_id}}">{{crm}}</a></td>
+                                        href="/paciente/detalhepaciente/{{_id}}">{{rg}}</a></td>
                             </tr>
                         </tbody>
                         {{else}}
                         <tr>
-                            <td colspan="4">Médicos não encontrados!</td>
+                            <td colspan="4">Nenhum paciente encontrado!</td>
                         </tr>
                         {{/each}}
                     </table>

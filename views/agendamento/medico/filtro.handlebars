@@ -1,3 +1,4 @@
+
 <div class=" h-75 ps-2 ">
     <div class="row w-100 mt-3 ps-2">
         <div class="col card">
@@ -6,13 +7,13 @@
                     <form action="/medico/filtro" method="post">
                         <h5 class="row mt-4 ms-1">Fitrar Por:</h5>
                         <select name="selectFiltro" id="" class="form-control">
-                            <option value="todos">Todos medicos</option>
+                            <option value="todos">Todos Médicos</option>
                             <hr>
-                            <option value="nome" >Nome</option>
-                            <option value="especializacao">especialização</option>
-                            <option value="crm">CRM</option>
+                            <option value="nome">Nome</option>
+                            <option value="especializacao">Especialização</option>
+                            <option value="email">CRM</option>
                         </select>
-                        <input type="text" name="inputFiltro" id="" class=" mt-2 form-control text-uppercase">
+                        <input type="text" name="inputFiltro" id="" class=" mt-2 form-control">
                         <button type="submit" class="btn btn-secondary mt-2">Filtrar</button>
                     </form>
                 </div>
@@ -27,31 +28,31 @@
                 <div class="table-responsive " style="height: 30rem; overflow-y: auto;">
                     <table class="table table-hover table-bordered table-info table-sm">
                         <thead class="table-light">
-                            <tr class="sticky">
+                            <tr class="sticky-top">
                                 <th class="col-md-auto">Nome</th>
-                                <th class="col-md-auto">Especialização</th>
+                                <th class="col-md-auto">especialização</th>
                                 <th class="col-md-auto">E-mail</th>
                                 <th class="col-md-auto">CRM</th>
                             </tr>
                         </thead>    
-                        {{#each medicos}}
+                        {{#if medico}}
                         <tbody>
                             <tr>
                                 <td><a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                                        href="/medico/detalheMedico/{{_id}}">{{nome}}</a></td>
+                                        href="/medico/detalhemedico/{{_id}}">{{medico.nome}}</a></td>
                                 <td><a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                                        href="/medico/detalheMedico/{{_id}}">{{especializacao}}</a></td>
+                                        href="/medico/detalhemedico/{{_id}}">{{medico.especializacao}}</a></td>
                                 <td><a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                                        href="/medico/detalheMedico/{{_id}}">{{email}}</a></td>
+                                        href="/medico/detalhemedico/{{_id}}">{{medico.email}}</a></td>
                                 <td><a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                                        href="/medico/detalheMedico/{{_id}}">{{crm}}</a></td>
+                                        href="/medico/detalhemedico/{{_id}}">{{medico.crm}}</a></td>
                             </tr>
                         </tbody>
                         {{else}}
                         <tr>
-                            <td colspan="4">Médicos não encontrados!</td>
+                            <td colspan="4">Médico não encontrado</td>
                         </tr>
-                        {{/each}}
+                        {{/if}}
                     </table>
                 </div>
             </div>

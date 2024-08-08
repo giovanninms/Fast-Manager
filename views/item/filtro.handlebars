@@ -12,7 +12,7 @@
                             <option value="descricao">Descrição</option>
                             <option value="tipoCirurgia">Tipo de Cirurgia</option>
                         </select>
-                        <input type="text" name="inputFiltro" id="" class=" mt-2 form-control">
+                        <input type="text" name="inputFiltro" id="" class=" mt-2 form-control text-uppercase">
                         <button type="submit" class="btn btn-secondary mt-2">Filtrar</button>
                     </form>
                 </div>
@@ -28,10 +28,10 @@
                     <table class="table table-hover table-bordered table-info table-sm">
                         <thead class="table-light">
                             <tr class="sticky-top">
-                                <th class="col-2">Código</th>
-                                <th class="col-5">Descrição</th>
-                                <th class="col-2">Tipo de Cirurgia</th>
-                                <th class="col-1">QTD</th>
+                                <th class="col-md-auto">Código</th>
+                                <th class="col-md-auto">Descrição</th>
+                                <th class="col-md-auto">Tipo de Cirurgia</th>
+                                <th class="col-md-auto">QTD</th>
                             </tr>
                         </thead>    
                         {{#if item}}
@@ -47,6 +47,10 @@
                                         href="/item/detalheItem/{{_id}}">{{item.quantidade}}</a></td>
                             </tr>
                         </tbody>
+                        {{else}}
+                        <tr>
+                            <td colspan="4">Nenhum Item encontrado!</td>
+                        </tr>
                         {{/if}}
                     </table>
                 </div>

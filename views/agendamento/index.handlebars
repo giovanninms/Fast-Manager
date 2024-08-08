@@ -3,10 +3,10 @@
         <div class="col card">
             <div class="card-body">
                 <div class="form">
-                    <form action="/medico/filtro" method="post">
+                    <form action="/agendamento/filtro" method="post">
                         <h5 class="row mt-4 ms-1">Fitrar Por:</h5>
                         <select name="selectFiltro" id="" class="form-control">
-                            <option value="todos">Todos medicos</option>
+                            <option value="todos">Todos Agendamentos</option>
                             <hr>
                             <option value="nome" >Nome</option>
                             <option value="especializacao">especialização</option>
@@ -17,8 +17,7 @@
                     </form>
                 </div>
                 <div class="buttons mt-4">
-                    <a href="/medico/novoMedico" class="pt-4"><button type="menu" class="btn btn-outline-success">Cadastrar
-                            Médico</button></a>
+                    <a href="/agendamento/novoAgendamento" class="pt-4"><button type="menu" class="btn btn-outline-success">Agendar Cirurgia</button></a>
                 </div>
             </div>
         </div>
@@ -34,22 +33,22 @@
                                 <th class="col-md-auto">CRM</th>
                             </tr>
                         </thead>    
-                        {{#each medicos}}
+                        {{#each agendamentos}}
                         <tbody>
                             <tr>
                                 <td><a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                                        href="/medico/detalheMedico/{{_id}}">{{nome}}</a></td>
+                                        href="/agendamento/detalheAgendamento/{{_id}}">{{nome}}</a></td>
                                 <td><a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                                        href="/medico/detalheMedico/{{_id}}">{{especializacao}}</a></td>
+                                        href="/agendamento/detalheAgendamento/{{_id}}">{{especializacao}}</a></td>
                                 <td><a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                                        href="/medico/detalheMedico/{{_id}}">{{email}}</a></td>
+                                        href="/agendamento/detalheAgendamento/{{_id}}">{{email}}</a></td>
                                 <td><a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                                        href="/medico/detalheMedico/{{_id}}">{{crm}}</a></td>
+                                        href="/agendamento/detalheAgendamento/{{_id}}">{{crm}}</a></td>
                             </tr>
                         </tbody>
                         {{else}}
                         <tr>
-                            <td colspan="4">Médicos não encontrados!</td>
+                            <td colspan="4">Agendamentos não encontrado!</td>
                         </tr>
                         {{/each}}
                     </table>

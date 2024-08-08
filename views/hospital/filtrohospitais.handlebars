@@ -1,0 +1,52 @@
+<div class=" h-100 ps-2 ">
+    <div class="row w-100 mt-3">
+
+    </div>
+    <div class="row w-100 mt-3 ps-2">
+        <div class="col card">
+            <div class="card-body">
+                <div>
+                    <form action="/hospital/filtroHospital" method="post">
+                        <h5 class="row mt-4 ms-1">Fitrar Por:</h5>
+                        <select name="selectFiltro" id="" class="form-control">
+                            <option value="nomeFantasia">Nome Fantasia</option>
+                            <option value="cnpj">CNPJ</option>
+                        </select>
+                        <input type="text" name="inputFiltro" id="" class=" mt-2 form-control">
+                        <button type="submit" class="btn btn-secondary">Filtrar</button>
+                    </form>
+                </div>
+                <a href="#">Cadastrar Hospital</a>
+                <a href="#"></a>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="table-container">
+                <div class="table-responsive " style="height: 30rem; overflow-y: auto;">
+                    <table class="table table-hover table-bordered table-info table-sm">
+                        <thead class="table-light">
+                            <tr class="sticky-top">
+                                <th colspan="8">Nome Fantasia</th>
+                                <th scope="col-md-auto">CNPJ</th>
+                                <th scope="col-md-auto">Telefone</th>
+                                <th scope="col-md-auto">Email</th>
+                            </tr>
+                        </thead>
+                        {{#each hospitais}}
+                        <tbody>
+                            
+                            <tr>
+                                <td colspan="8">{{nomeFantasia}}</td>
+                                <td>{{cnpj}}</td>
+                                <td>{{celular}}</td>
+                                <td>{{email}}</td>
+                            </tr>
+                           
+                        </tbody>
+                         {{/each}}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -8,16 +8,17 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-          <div class="alert alert-success" role="alert">{{msg_sucesso}}</div>
+        <div class="alert alert-success" role="alert">{{msg_sucesso}}</div>
       </div>
     </div>
   </div>
 </div>
+
 {{/if}}
-    
+
 
 {{#if msg_erro}}
-    <!-- Modal -->
+<!-- Modal -->
 <div class="modal fade show" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -26,7 +27,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-          <div class="alert alert-danger" role="alert">{{msg_sucesso}}</div>
+        <div class="alert alert-danger" role="alert">{{msg_erro}}</div>
       </div>
     </div>
   </div>

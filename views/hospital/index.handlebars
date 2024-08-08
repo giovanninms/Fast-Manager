@@ -11,8 +11,8 @@
                             <option value="nomeFantasia">Nome Fantasia</option>
                             <option value="cnpj">CNPJ</option>
                         </select>
-                        <input type="text" name="inputFiltro" id="" class=" mt-2 form-control">
-                        <button type="submit" class="btn btn-secondary mt-2">Filtrar</button>
+                        <input type="text" name="inputFiltro" id="" class=" mt-2 form-control text-uppercase">
+                        <button type="submit" class="btn btn-secondary mt-2 ">Filtrar</button>
                     </form>
                 </div>
                 <div class="buttons mt-4">
@@ -27,7 +27,7 @@
                 <div class="table-responsive " style="height: 30rem; overflow-y: auto;">
                     <table class="table table-hover table-bordered table-info table-sm">
                         <thead class="table-light">
-                            <tr class="sticky-top">
+                            <tr class="sticky">
                                 <th class="col-5">Nome Fantasia</th>
                                 <th class="col-2">CNPJ</th>
                                 <th class="col-2">Telefone</th>
@@ -42,7 +42,12 @@
                                 <td ><a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="/hospital/detalheHospital/{{_id}}">{{celular}}</a></td>
                                 <td ><a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="/hospital/detalheHospital/{{_id}}">{{email}}</a></td>
                             </tr>
+                            {{else}}
+                            <tr>
+                                <td colspan="4">Nenhum hospital encontrado!</td>
+                            </tr>
                             {{/each}}
+                            
                         </tbody>
                     </table>
                 </div>

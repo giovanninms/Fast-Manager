@@ -21,24 +21,24 @@
   {{/if}}
   
 {{#if item}}
-  <div class="container text-center d-flex justify-content-center  h-75">
-    <div class="card align-self-center w-75">
+  <div class="container text-center  d-flex align-items-center h-100">
+  <div class="card align-self-center w-100">
       <div class="card-body">
         <form action="/item/editItem" method="post">
           <input type="hidden" name="id" value="{{item._id}}">
           <div class="mb-3 mt-4">
             <div class="input-group">
               <span class="input-group-text">Código</span>
-              <input name="codigo" type="text" class="form-control w-25" required value="{{item.codigo}}">
+              <input name="codigo" type="text" class="form-control text-uppercase w-25" required value="{{item.codigo}}">
               <span class="input-group-text">Descrição</span>
-              <input name="descricao" type="text" class="form-control w-50" required value="{{item.descricao}}">
+              <input name="descricao" type="text" class="form-control text-uppercase w-50" required value="{{item.descricao}}">
             </div>
           </div>
           <div class="input-group mb-3 mt-4">
             <span class="input-group-text">Quantidade</span>
-            <input name="quantidade" type="number" class="form-control " required value="{{item.quantidade}}">
+            <input name="quantidade" type="number" class="form-control text-uppercase " required value="{{item.quantidade}}">
             <span class="input-group-text">Tipo de Cirurgia</span>
-            <select name="tipoCirurgia" id="" class="form-control w-50">
+            <select name="tipoCirurgia" id="" class="form-control text-uppercase w-50">
               {{!-- {{#each itens}}
               
               {{/each}} --}}

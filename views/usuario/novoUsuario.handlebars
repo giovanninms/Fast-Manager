@@ -1,0 +1,71 @@
+{{#if erros}}
+<!-- Modal -->
+<div class="modal fade show" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Erro!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{#each erros}}
+        <p class="alert alert-danger flex-row">{{menssagem}}</p>
+        {{/each}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+{{/if}}
+
+
+<a href="/paciente/" class="position-absolute top-10 start-0 ms-2 mt-2" title="Voltar">
+  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-arrow-left"
+    viewBox="0 0 16 16">
+    <path fill-rule="evenodd"
+      d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+  </svg>
+</a>
+<div class="container  d-flex align-items-center h-100">
+  <div class="card w-100">
+    <div class="card-body">
+      <form action="/usuario/novoUsuario/add" method="post">
+        <div class="input-group mb-3 mt-4">
+          <span class="input-group-text">Nome</span>
+          <input name="nome" type="text" class="form-control text-uppercase " required>
+          <span class="input-group-text">E-mail</span>
+          <input type="email" name="email" id="" class="form-control text-uppercase" required>
+        </div>
+        <div class="input-group mb-3 mt-4">
+          <span class="input-group-text">Nick</span>
+          <input name="nick" type="text" class="form-control text-uppercase " required>
+          <span class="input-group-text">Senha</span>
+          <input name="senha" type="text" class="form-control text-uppercase" required>
+          <span class="input-group-text">Repitir Senha</span>
+          <input name="senha2" type="text" class="form-control text-uppercase" required>
+        </div>
+        <br>
+        <div class=" input-group mb-3 mt-4 w-25">
+          <span class="input-group-text">Nival Usuario</span>
+          <select name="nivelUsuario" id="" class="form-select">
+            <option value="" hidden></option>
+            <option value="ADM">ADM</option>
+            <option value="Agendamento">Agendamento</option>
+            <option value="Supervisor do Estoque">Supervisor do Estoque</option>
+            <option value="Separação">Separação</option>
+          </select>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-success">Cadastrar</button>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+  var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
+    keyboard: false
+  });
+  myModal.show(); 
+</script>

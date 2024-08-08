@@ -1,3 +1,4 @@
+
 <div class=" h-75 ps-2 ">
     <div class="row w-100 mt-3 ps-2">
         <div class="col card">
@@ -6,7 +7,7 @@
                     <form action="/medico/filtro" method="post">
                         <h5 class="row mt-4 ms-1">Fitrar Por:</h5>
                         <select name="selectFiltro" id="" class="form-control">
-                            <option value="todos">Todos medicos</option>
+                            <option value="todos">Todos Médicos</option>
                             <hr>
                             <option value="nome" >Nome</option>
                             <option value="especializacao">especialização</option>
@@ -38,18 +39,18 @@
                         <tbody>
                             <tr>
                                 <td><a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                                        href="/medico/detalheMedico/{{_id}}">{{nome}}</a></td>
+                                        href="/medico/detalhemedico/{{_id}}">{{nome}}</a></td>
                                 <td><a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                                        href="/medico/detalheMedico/{{_id}}">{{especializacao}}</a></td>
+                                        href="/medico/detalhemedico/{{_id}}">{{especializacao}}</a></td>
                                 <td><a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                                        href="/medico/detalheMedico/{{_id}}">{{email}}</a></td>
+                                        href="/medico/detalhemedico/{{_id}}">{{email}}</a></td>
                                 <td><a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                                        href="/medico/detalheMedico/{{_id}}">{{crm}}</a></td>
+                                        href="/medico/detalhemedico/{{_id}}">{{crm}}</a></td>
                             </tr>
                         </tbody>
                         {{else}}
                         <tr>
-                            <td colspan="4">Médicos não encontrados!</td>
+                            <td colspan="4">Médico não encontrado!</td>
                         </tr>
                         {{/each}}
                     </table>
