@@ -9,22 +9,40 @@ router.get("/", (req, res) => {
 })
 
 router.post("/filtro", (req, res) => {
-    const inputFiltro = req.body.inputFiltro
+    const inputFiltro = req.body.inputFiltro.toUpperCase()
     const selectFiltro = req.body.selectFiltro
 
     if (selectFiltro === "nomeFantasia") {
-        HospitalSchema.findOne({ nomeFantasia: inputFiltro }).lean().then((hospital) => {
-            console.log(`Hospital ${hospital.nomeFantasia},`)
-            res.render("hospital/filtro", { hospital: hospital })
+        HospitalSchema.find({ nomeFantasia: {$regex: inputFiltro} }).lean().then((hospitais) => {
+            if (!hospitais || hospitais.length === 0 ) {
+                console.log("hospital não encontrado ou hospitais.length === 0!")
+                res.redirect("/hospital/")
+            }else if (hospitais.length > 1) {
+                console.log(`hospital ${hospitais.codigo},`)
+                res.render("hospital/index", { hospitais: hospitais })
+            } else if (hospitais.length == 1) {
+                console.log(`hospital ${hospitais[0].codigo},`)
+                res.render("hospital/filtro", { hospital: hospitais[0] })
+            }
         }).catch((error) => {
             console.log("Erro ao consultar o hospital pelo nome fantasia: " + error)
+            res.render("hospital/index")
         })
     } else if (selectFiltro === "cnpj") {
-        HospitalSchema.findOne({ cnpj: inputFiltro }).lean().then((hospital) => {
-            console.log(`Hospital ${hospital.nomeFantasia},`)
-            res.render("hospital/filtro", { hospital: hospital })
+        HospitalSchema.find({ cnpj: {$regex: inputFiltro} }).lean().then((hospitais) => {
+            if (!hospitais || hospitais.length === 0 ) {
+                console.log("hospital não encontrado ou hospitais.length === 0!")
+                res.redirect("/hospital/")
+            }else if (hospitais.length > 1) {
+                console.log(`hospital ${hospitais.codigo},`)
+                res.render("hospital/index", { hospitais: hospitais })
+            } else if (hospitais.length == 1) {
+                console.log(`hospital ${hospitais[0].codigo},`)
+                res.render("hospital/filtro", { hospital: hospitais[0] })
+            }
         }).catch((error) => {
             console.log("Erro ao consultar o hospital pelo cnpj: " + error)
+            res.render("hospital/index")
         })
     } else if (selectFiltro === "todos") {
         HospitalSchema.find().lean().then((hospitais) => {
@@ -35,7 +53,10 @@ router.post("/filtro", (req, res) => {
             res.render("hospital/index", { hospitais: hospitais })
         }).catch((error) => {
             console.log("Error ao consultar todos os hospitais: " + error)
+            res.render("hospital/index")
         })
+    }else{
+        res.render("hospital/index")
     }
 
 })
@@ -95,7 +116,7 @@ router.post("/novoHospital/add", (req, res) => {
         new HospitalSchema(novoHospital).save().then(() => {
             console.log("Hospital cadastrado com sucesso!")
             req.flash("msg_sucesso", "Hospital cadastrado com sucesso!")
-            res.render("hospital/index")
+            res.redirect("/hospital/novoHospital")
         }).catch((error) => {
             console.log("Erro ao cadastrar hospital: " + error)
             req.flash("msg_erro", "Erro ao cadastrar Hospital")

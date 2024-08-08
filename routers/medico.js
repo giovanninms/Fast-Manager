@@ -9,29 +9,57 @@ router.get("/", (req,res)=>{
 })
 
 router.post("/filtro", (req, res) => {
-    const inputFiltro = req.body.inputFiltro
+    const inputFiltro = req.body.inputFiltro.toUpperCase()
     const selectFiltro = req.body.selectFiltro
 
     if (selectFiltro === "nome") {
-        MedicoSchema.findOne({ codigo: inputFiltro }).lean().then((medico) => {
-            console.log(`medico ${medico.descricao},`)
-            res.render("medico/filtro", { medico: medico })
+        MedicoSchema.find({ nome: { $regex: inputFiltro } }).lean().then((medicos) => {
+            if (!medicos || medicos.length === 0 ) {
+                console.log("medico não encontrado ou medicos.length === 0!")
+                res.redirect("/medico/")
+            }else if (medicos.length > 1) {
+                console.log(`medico ${medicos.nome},`)
+                res.render("medico/index", { medicos: medicos })
+            } else if (medicos.length == 1) {
+                console.log(`medico ${medicos[0].nome},`)
+                res.render("medico/filtro", { medico: medicos[0] })
+            }
         }).catch((error) => {
             console.log("Erro ao consultar o medico pelo nome: " + error)
         })
     } else if (selectFiltro === "especializacao") {
-        MedicoSchema.findOne({ especializacao: inputFiltro }).lean().then((medico) => {
-            console.log(`medico ${medico.nome},`)
-            res.render("medico/filtro", { medico: medico })
+        MedicoSchema.find({ especializacao: { $regex: inputFiltro.toUpperCase() } }).lean().then((medicos) => {
+            if (!medicos || medicos.length === 0) {
+                console.log("medico não encontrado ou medicos.length === 0")
+                res.redirect("/medico/")
+            }else if (medicos.length > 1) {
+                console.log(`medico ${medicos.nome},`)
+                res.render("medico/index", { medicos: medicos })
+            } else if (medicos.length == 1) {
+                console.log(`medico ${medicos[0].nome},`)
+                res.render("medico/filtro", { medico: medicos[0] })
+            }
         }).catch((error) => {
-            console.log("Erro ao consultar o medico pela expecialização: " + error)
+            console.log("Erro ao consultar o medico pela especialização: " + error)
         })
-    } else if (selectFiltro === "crm"){
-        MedicoSchema.findOne({ crm: inputFiltro }).lean().then((medico) => {
-            console.log(`medico ${medico.nome},`)
-            res.render("medico/filtro", { medico: medico })
+    } else if (selectFiltro === "crm") {
+        MedicoSchema.find({ crm: { $regex: inputFiltro.toUpperCase() } }).lean().then((medicos) => {
+            if (!medicos || medicos.length === 0 ) {
+                req.flash("msg_erro", "Nenhum medico encontrodado pelo CRM!")
+                res.redirect("/medico/")
+            }else if (medicos.length > 1) {
+                medicos.forEach(medico => {
+                    console.log(medico.nome)
+                });
+                res.render("medico/index", { medicos: medicos })
+            } else if (medicos.length == 1) {
+                console.log(`medico ${medicos[0]},`)
+                res.render("medico/filtro", { medico: medicos[0] })
+            }
         }).catch((error) => {
-            console.log("Erro ao consultar o medico pelo CRM: " + error)
+            console.log("Erro ao consultar o medico pelo tipo de cirurgia: " + error)
+            req.flash("msg_erro", "Nenhum medico encontrodado pelo tipo de cirurgia! ")
+            res.redirect("/medico/")
         })
     } else if (selectFiltro === "todos") {
         MedicoSchema.find().lean().then((medicos) => {
@@ -46,50 +74,63 @@ router.post("/filtro", (req, res) => {
     }
 })
 router.get("/novomedico", (req, res) => {
-        res.render("medico/novomedico", {itens: MedicoSchema.tiposCirurgia})
+        res.render("medico/novomedico", {medicos: MedicoSchema.tiposCirurgia})
 })
 
 router.post("/novomedico/add", (req, res) => {
-    const {codigo, descricao, tipoCirurgia, quantidade} = req.body.toUpperCase()
+    const {nome, especializacao, cpf, crm, email, telefone, celular} = req.body
 
 
     const erros = []
-    if (!codigo || typeof codigo === undefined || codigo === null) {
-        erros.push({ menssagem: "código inválida! Tente novamente." })
+    
+    if (!nome || typeof nome === undefined || nome === null) {
+        erros.push({ menssagem: "Nome inválido! Tente novamente." })
     }
-    if (!descricao || typeof descricao === undefined || descricao === null) {
-        erros.push({ menssagem: "Descrição inválido! Tente novamente." })
+    if (!especializacao || typeof especializacao === undefined || especializacao === null) {
+        erros.push({ menssagem: "Especialização inválida! Tente novamente." })
     }
-    if (!tipoCirurgia || typeof tipoCirurgia === undefined || tipoCirurgia === null) {
+    if (!cpf || typeof cpf === undefined || cpf === null) {
         erros.push({ menssagem: "Tipo de Cirurgia inválido! Tente novamente." })
     }
-    if (!quantidade || typeof quantidade === undefined || quantidade === null) {
-        erros.push({ menssagem: "Quantidade inválido! Tente novamente." })
+    if (!crm || typeof crm === undefined || crm === null) {
+        erros.push({ menssagem: "CRM inválido! Tente novamente." })
+    }
+    if (!email || typeof email === undefined || email === null) {
+        erros.push({ menssagem: "E-mail inválido! Tente novamente." })
+    }
+    if (!telefone || typeof telefone === undefined || telefone === null) {
+        erros.push({ menssagem: "Telefone inválido! Tente novamente." })
+    }
+    if (!celular || typeof celular === undefined || celular === null) {
+        erros.push({ menssagem: "Celular inválido! Tente novamente." })
     }
 
     if (erros.length > 0) {
         res.render("medico/novomedico", { erros: erros })
     } else {
         const novomedico = ({
-            codigo: codigo.toUpperCase(),
-            descricao: descricao.toUpperCase(),
-            tipoCirurgia: tipoCirurgia.toUpperCase(),
-            quantidade: quantidade.toUpperCase(),
+            nome: nome.toUpperCase(),
+            especializacao: especializacao.toUpperCase(),
+            cpf: cpf.toUpperCase(),
+            crm: crm.toUpperCase(),
+            email: email.toUpperCase(),
+            telefone:telefone.toUpperCase(),
+            celular: celular.toUpperCase()
         })
         new MedicoSchema(novomedico).save().then(() => {
             console.log("medico cadastrado com sucesso!")
             req.flash("msg_sucesso", "medico cadastrado com sucesso!")
-            res.render("medico/novomedico")
+            res.render("medico/novoMedico")
         }).catch((error) => {
             console.log("Erro ao cadastrar medico: " + error)
             req.flash("msg_erro", "Erro ao cadastrar medico")
-            res.render("medico/novomedico")
+            res.render("medico/novoMedico")
         })
     }
 })
 router.get("/detalhemedico/:id", (req, res) => {
     MedicoSchema.findOne({ _id: req.params.id }).lean().then((medico) => {
-        console.log(`Consulta medico pelo _id, ${medico.descricao}`)
+        console.log(`Consulta medico pelo _id, ${medico.especializacao}`)
         res.render("medico/detalhemedico", { medico: medico, })
     }).catch((error) => {
         console.log("Erro ao consultar o hospital pelo _id: " + error)
@@ -105,39 +146,51 @@ router.get("/editarmedico/:id", (req, res) => {
 })
 router.post("/editmedico", (req, res)=>{
     
-        const {codigo, descricao, tipoCirurgia, quantidade, id} = req.body
+        const {nome, especializacao, cpf, crm, id, email, telefone, celular} = req.body
     
         const erros = []
-        if (!codigo || typeof codigo === undefined || codigo === null) {
+        if (!nome || typeof nome === undefined || nome === null) {
             erros.push({ menssagem: "código inválida! Tente novamente." })
         }
-        if (!descricao || typeof descricao === undefined || descricao === null) {
+        if (!especializacao || typeof especializacao === undefined || especializacao === null) {
             erros.push({ menssagem: "Descrição inválido! Tente novamente." })
         }
-        if (!tipoCirurgia || typeof tipoCirurgia === undefined || tipoCirurgia === null) {
+        if (!cpf || typeof cpf === undefined || cpf === null) {
             erros.push({ menssagem: "Tipo de Cirurgia inválido! Tente novamente." })
         }
-        if (!quantidade || typeof quantidade === undefined || quantidade === null) {
-            erros.push({ menssagem: "Quantidade inválido! Tente novamente." })
+        if (!crm || typeof crm === undefined || crm === null) {
+            erros.push({ menssagem: "crm inválido! Tente novamente." })
+        }
+        if (!email || typeof email === undefined || email === null) {
+            erros.push({ menssagem: "Email inválido! Tente novamente." })
+        }
+        if (!telefone || typeof telefone === undefined || telefone === null) {
+            erros.push({ menssagem: "Telefone inválido! Tente novamente." })
+        }
+        if (!celular || typeof celular === undefined || celular === null) {
+            erros.push({ menssagem: "Celular inválido! Tente novamente." })
         }
     
         if (erros.length > 0) {
             res.render("medico/novomedico", { erros: erros })
         } else {
             const updatemedico = ({
-                codigo: codigo.toUpperCase(),
-                descricao: descricao.toUpperCase(),
-                tipoCirurgia: tipoCirurgia.toUpperCase(),
-                quantidade: quantidade.toUpperCase(),
+                nome: nome.toUpperCase(),
+                especializacao: especializacao.toUpperCase(),
+                cpf: cpf.toUpperCase(),
+                crm: crm.toUpperCase(),
+                email: email.toUpperCase(),
+                telefone: telefone,
+                celular: celular
             })
             MedicoSchema.findOneAndUpdate({_id: id}, updatemedico).then(() => {
                 console.log("medico alterado com sucesso!")
-                req.flash("msg_sucesso", "medico alterado com sucesso!")
-                res.redirect("/medico/detalhemedico/"+ id)
+                req.flash("msg_sucesso", "Médico alterado com sucesso!")
+                res.redirect("/medico/detalheMedico/" + id)
             }).catch((error) => {
                 console.log("Erro ao alterar medico: " + error)
                 req.flash("msg_erro", "Erro ao alterar medico")
-                res.redirect("/medico/detalhemedico/"+id)
+                res.redirect("/medico/detalheMedico/"+id)
             })
         }
     })
