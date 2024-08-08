@@ -2,11 +2,11 @@ const mongoose = require("mongoose");
 const schema = mongoose.Schema
 
 const especializacoes = Object.freeze({
-    Joelho: "Joelho",
-    Quadril: "Quadril",
-    Ombro: "Ombro",
-    Tornozelo: "Tornozelo",
-    Trauma: "Trauma"
+    Joelho: "JOELHO",
+    Quadril: "QUADRIL",
+    Ombro: "OMBRO",
+    Tornozelo: "TORNOZELO",
+    Trauma: "TRAUMA"
 })
 const medicoSchema = new schema({
     nome: {
@@ -21,10 +21,6 @@ const medicoSchema = new schema({
         type: String,
         required: true
     },
-    dataNascimento: {
-        type: Date,
-        required: true
-    },
     especializacao: {
         type: String,
         enum: Object.values(especializacoes)
@@ -33,8 +29,9 @@ const medicoSchema = new schema({
         type: String,
         required: true
     },
-    telone: {
-        type: String
+    telefone: {
+        type: String,
+        required: true
     },
     celular: {
         type: String,

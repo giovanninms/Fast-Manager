@@ -15,14 +15,13 @@ const pacienteSchema = new schema({
         required: true
     },
     dataNascimento: {
-        type: Date,
-        required: true
+        type: Date
     },
     email: {
         type: String,
         required: true
     },
-    telone: {
+    telefone: {
         type: String
     },
     celular: {
