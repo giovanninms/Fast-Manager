@@ -9,7 +9,7 @@
       </div>
       <div class="modal-body">
         {{#each erros}}
-          <p class="alert alert-danger flex-row">{{menssagem}}</p>
+        <p class="alert alert-danger flex-row">{{menssagem}}</p>
         {{/each}}
       </div>
       <div class="modal-footer">
@@ -21,7 +21,7 @@
 {{/if}}
 
 
-<a href="/medico/" class="position-absolute top-10 start-0 ms-2 mt-2" title="Voltar">
+<a href="/agendamento/" class="position-absolute top-10 start-0 ms-2 mt-2" title="Voltar">
   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-arrow-left"
     viewBox="0 0 16 16">
     <path fill-rule="evenodd"
@@ -31,40 +31,86 @@
 <div class="container text-center  d-flex align-items-center h-100">
   <div class="card align-self-center w-100">
     <div class="card-body">
-      <form action="/medico/novomedico/add" method="post">
-      <div class="input-group mb-3 mt-4">
-        <span class="input-group-text">Nome</span>
-        <input name="nome" type="text" class="form-control text-uppercase w-25" required>
-        <span class="input-group-text">Especialização</span>
-        <select name="especializacao" id="" class="form-control w-auto">
-            <option value="" hidden></option>
-            <option value="JOELHO">JOELHO</option>
-            <option value="QUADRIL">QUADRIL</option>
-            <option value="OMBRO">OMBRO</option>
-            <option value="TORNOZELO">TORNOZELO</option>
-            <option value="TRAUMA">TRAUMA</option>
-        </select>
-      </div>
-      <div class="input-group mb-3 mt-4">
-        <span class="input-group-text">CPF</span>
-        <input name="cpf" type="text" class="form-control text-uppercase" required>
-        <span class="input-group-text">CRM</span>
-        <input name="crm" type="text" class="form-control text-uppercase" required>
-        <span class="input-group-text">Celular</span>
-          <input name="celular" type="text" class="form-control text-uppercase" required>
-      </div>
-      <br>
-      <div class="input-group mb-3 mt-4">
-        <div class="input-group">
-          <span class="input-group-text">E-mail</span>
-        <input name="email" type="text" class="form-control text-uppercase w-25" required>
-          <span class="input-group-text">Telefone</span>
-          <input name="telefone" type="text" class="form-control text-uppercase" required>
+      <form action="/agendamento/novoAgendamento/add" method="post">
+        <div class="input-group mb-3 mt-4">
+          <span class="input-group-text">Paciente</span>
+          <input name="paciente" type="text" class="form-control text-uppercase w-25" required>
+          <span class="input-group-text">Médico</span>
+          <input name="medico" type="text" class="form-control text-uppercase w-25" required>
         </div>
-      </div>
+        <div class="input-group mb-3 mt-4">
+          <span class="input-group-text">Hospital</span>
+          <input name="hospital" type="text" class="form-control text-uppercase" required>
+          <span class="input-group-text">Cirurgia</span>
+          <select name="tipoCirurgia" id="" class="form-control">
+            <option value="" hidden></option>
+            <option value="Acromio">Acromio</option>
+            <option value="Acromio Bio">Acromio Bio</option>
+            <option value="Artroscopia de Cotovelo">Artroscopia de Cotovelo</option>
+            <option value="Artroscopia de Quadril">Artroscopia de Quadril</option>
+            <option value="Artroscopia de Tornozelo">Artroscopia de Tornozelo</option>
+            <option value="Biceps">Biceps</option>
+            <option value="Biceps Bio">Biceps Bio</option>
+            <option value="Fx Clavicula">FX Clavicula</option>
+            <option value="Fx Falange">FX Falange</option>
+            <option value="Fx FemurDistal">FX Femur Distal</option>
+            <option value="Fx FemurProximal">FX Femur Proximal</option>
+            <option value="Fx Patela">FX Patela</option>
+            <option value="Fx Pe">FX Pé</option>
+            <option value="Fx Punho">FX Punho</option>
+            <option value="Fx Tibia">FX Tibia</option>
+            <option value="Fx Tornozelo">FX Tornozelo</option>
+            <option value="Fx HumeroDistal">FX Humero Distal</option>
+            <option value="Fx HumeroProximal">FX Humero Proximal</option>
+            <option value="Hallux Valgus">Hallux Valgus</option>
+            <option value="Instabilidade">Instabilidade</option>
+            <option value="Instabilidade Bio">Instabilidade Bio</option>
+            <option value="Labral">Labral</option>
+            <option value="Labral Bio">Labral Bio</option>
+            <option value="LAC">LAC</option>
+            <option value="LAL">LAL</option>
+            <option value="LAL Bio">LAL Bio</option>
+            <option value="LCA">LCA</option>
+            <option value="LCA Bio">LCA Bio</option>
+            <option value="LCM">LCM</option>
+            <option value="LCM Bio">LCM Bio</option>
+            <option value="LCP">LCP</option>
+            <option value="LCP Bio">LCP Bio</option>
+            <option value="Ligamento  Tornozelo">Ligamento Tornozelo</option>
+            <option value="LPFM">LPFM</option>
+            <option value="LPFM Bio">LPFM Bio</option>
+            <option value="Manguito">Manguito</option>
+            <option value="Manguito Bio">Manguito Bio</option>
+            <option value="Menisco">Menisco</option>
+            <option value="Osteotomia">Osteotomia</option>
+            <option value="Oxford">Oxford</option>
+            <option value="Pe Plano">Pe Plano</option>
+            <option value="PTJ">PTJ</option>
+            <option value="PTO  Reversa">PTO Reversa</option>
+            <option value="PTO Anatomica">PTO Anatomica</option>
+            <option value="PTQ Dupla">PTQ Dupla Mobilidade</option>
+            <option value="PTQ Hibrida">PTQ Hibrida</option>
+            <option value="PTQ Pressfit">PTQ Pressfit</option>
+            <option value="PTQ Revisao">PTQ Revisao</option>
+            <option value="Retirada">Retirada</option>
+            <option value="Tendao Aquiles">Tendao de Aquiles</option>
+            <option value="Tenoplastia">Tenoplastia</option>
+          </select>
+          <span class="input-group-text">Data</span>
+          <input name="dataCirurgia" type="datetime-local" class="form-control text-uppercase" required>
+        </div>
+        <br>
+        <div class="input-group mb-3 mt-4">
+          <div class="input-group">
+            <span class="input-group-text">Item</span>
+            <input name="itensSolicitados" type="text" class="form-control text-uppercase w-25" required>
+            <span class="input-group-text">Quantidade</span>
+            <input name="quantidade" type="text" class="form-control text-uppercase" required>
+          </div>
+        </div>
 
-      <button type="submit" class="btn btn-success">Cadastrar</button>
-    </form>
+        <button type="submit" class="btn btn-success">Cadastrar</button>
+      </form>
     </div>
   </div>
 </div>

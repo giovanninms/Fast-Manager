@@ -3,9 +3,9 @@ const schema = mongoose.Schema
 
 const niveisUsuario = Object.freeze({
     Adm: "ADM", 
-    Agendamento: "Agendamento",
-    SupervisorEstoque: "Supervisor do Estoque",
-    Separacao: "Separação"
+    Agendamento: "AGENDAMENTO",
+    Supervisor: "SUPERVISOR",
+    Separacao: "SEPARAÇÃO"
 })
 
 const usuarioSchema = new schema({

@@ -4,7 +4,6 @@ const mongoose = require("mongoose")
 require("../models/PacienteSchema")
 const PacienteSchema = mongoose.model("pacientes")
 
- //CRUD dos pacientes
 
 router.get("/", (req,res)=>{
     res.render("paciente/index")
@@ -29,8 +28,8 @@ router.post("/filtro", (req, res) => {
         }).catch((error) => {
             console.log("Erro ao consultar o paciente pelo nome: " + error)
         })
-    } else if (selectFiltro === "rg") {
-        PacienteSchema.find({ rg: { $regex: inputFiltro.toUpperCase() } }).lean().then((pacientes) => {
+    } else if (selectFiltro === "cpf") {
+        PacienteSchema.find({ cpf: { $regex: inputFiltro.toUpperCase() } }).lean().then((pacientes) => {
             if (!pacientes || pacientes.length === 0) {
                 console.log("paciente não encontrado ou pacientes.length === 0")
                 res.redirect("/paciente/")
@@ -42,12 +41,12 @@ router.post("/filtro", (req, res) => {
                 res.render("paciente/filtro", { paciente: pacientes[0] })
             }
         }).catch((error) => {
-            console.log("Erro ao consultar o paciente pela RG: " + error)
+            console.log("Erro ao consultar o paciente pelo cpf: " + error)
         })
-    } else if (selectFiltro === "cpf") {
-        PacienteSchema.find({ cpf: { $regex: inputFiltro.toUpperCase() } }).lean().then((pacientes) => {
+    } else if (selectFiltro === "rg") {
+        PacienteSchema.find({ rg: { $regex: inputFiltro.toUpperCase() } }).lean().then((pacientes) => {
             if (!pacientes || pacientes.length === 0 ) {
-                req.flash("msg_erro", "Nenhum paciente encontrodado pelo CPF!")
+                req.flash("msg_erro", "Nenhum paciente encontrodado pelo rg!")
                 res.redirect("/paciente/")
             }else if (pacientes.length > 1) {
                 pacientes.forEach(paciente => {
@@ -59,8 +58,8 @@ router.post("/filtro", (req, res) => {
                 res.render("paciente/filtro", { paciente: pacientes[0] })
             }
         }).catch((error) => {
-            console.log("Erro ao consultar o paciente pelo CPF: " + error)
-            req.flash("msg_erro", "Nenhum paciente encontrodado pelo CPF! ")
+            console.log("Erro ao consultar o paciente pelo rg: " + error)
+            req.flash("msg_erro", "Nenhum paciente encontrodado pelo rg! ")
             res.redirect("/paciente/")
         })
     } else if (selectFiltro === "todos") {

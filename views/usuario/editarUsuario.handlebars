@@ -1,0 +1,39 @@
+<div class="container text-center  d-flex align-items-center h-100">
+  <div class="card align-self-center w-100">
+        <div class="card-body">
+            {{#if usuario}}
+            <form action="/usuario/editUsuario" method="post">
+            <div class="input-group mb-3 mt-4">
+                <input type="hidden" name="id" value="{{usuario._id}}">
+                <span class="input-group-text">Nome</span>
+                <input name="nome" type="text" class="form-control text-uppercase w-25" value="{{usuario.nome}}"
+                    required>
+                <span class="input-group-text">Nivel Usuario</span>
+                <select name="nivelUsuario" id="" class="form-control w-auto" required>
+                    <option value="{{usuario.nivelUsuario}}">{{usuario.nivelUsuario}}</option>
+                    <hr>
+                    <option value="" hidden></option>
+                    <option value="ADM">ADM</option>
+                    <option value="AGENDAMENTO">Agendamento</option>
+                    <option value="SUPERVISOR">Supervisor</option>
+                    <option value="SEPARAÇÃO">Separação</option>
+                </select>
+            </div>
+            <div class="input-group mb-3 mt-4">
+                <span class="input-group-text">Nick</span>
+                <input name="nick" type="text" class="form-control text-uppercase" value="{{usuario.nick}}" required>
+                <span class="input-group-text">E-mail</span>
+                <input name="email" type="text" class="form-control text-uppercase" value="{{usuario.email}}" required>
+                <span class="input-group-text">Senha</span>
+                <input name="senha" type="text" class="form-control text-uppercase" value="{{usuario.senha}}"
+                    required>
+            </div>
+            <br>
+           
+            <button type="submit" class="btn btn-success">Salvar</button>
+            <a href="/usuario/detalheusuario/{{usuario._id}}" class="btn btn-danger">Voltar</a>
+            </form>
+            {{/if}}
+        </div>
+    </div>
+</div>
